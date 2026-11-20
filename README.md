@@ -34,17 +34,17 @@ db-engine is a relational,serverless,embedded database similar to sqlite.
 
 ## 2 DATABASE ARCHITECTURE
 
-a. ### Public api
+### a. Public api
 
 - open database
 - execute query
 - fetch rows
 
-b. ### SQL frontend
+### b. SQL frontend
 
 Tokenizer → Parser → AST → Validation
 
-c. ### Query execution engine
+### c. Query execution engine
 
 - Scans
 - Filters
@@ -52,16 +52,30 @@ c. ### Query execution engine
 - Updates
 - Deletes
 
-d. ### Storage engine
+### d. Storage engine
 
 - Tables
 - B-tree
 - Record
 - serialization
 
-f. ### Persistence layer
+### e. Persistence layer
 
 - PagesBuffer
 - pool
 - File I/O
 - WAL
+
+## 3. project Implementation
+
+### a. Stage 1 — File storage and serialization
+
+record representation in memory and encoding it into byte sequence to be stored in disk.  
+Tasks:
+
+    - Open and create a database file.
+    - Read and write byte ranges.
+    -Design a record format.
+    -Convert records to bytes and back.
+    -Detect malformed or truncated records.
+    -Reopen the database and recover previously stored data.
