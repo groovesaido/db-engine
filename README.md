@@ -97,7 +97,7 @@ The page manager will need to:
 
 The offset of page _p_ is:
 
-```text
+```md
 offset(_p_) = _p_ &times; page size
 ```
 
