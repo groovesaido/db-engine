@@ -95,10 +95,10 @@ The page manager will need to:
 - Allocate new pages.
 - Maintain metadata describing the database.
 
-The offset of page _p_ is:
+The offset of page p is:
 
-```md
-offset(_p_) = _p_ &times; page size
+```text
+offset(p) = p × page size
 ```
 
 implement page header, usable space, record layout, and how to detect corrupted pages.
