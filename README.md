@@ -68,9 +68,10 @@ Tokenizer → Parser → AST → Validation
 
 ## 3. project Implementation
 
-### a. Stage 1 — File storage and serialization
+### Stage 1 — File storage and serialization
 
-record representation in memory and encoding it into byte sequence to be stored in disk.  
+record representation in memory and encoding it into byte sequence to be stored in disk.
+
 Tasks:
 
 - Open and create a database file.
@@ -79,3 +80,24 @@ Tasks:
 - Convert records to bytes and back.
 - Detect malformed or truncated records.
 - Reopen the database and recover previously stored data.
+
+Milestone: Insert a record, exit the process, restart it, and retrieve the same record.
+
+### Stage 2 — Fixed-size pages and a page manager
+
+We will implement a page of a fixed size to be decided between 4KB or 8KB.
+
+The page manager will need to:
+
+- Translate a page number into a file offset.
+- Read and write complete pages.
+- Track allocated pages.
+- Allocate new pages.
+- Maintain metadata describing the database.
+
+The offset of page _p_ is:
+offset(_p_) = _$\_p_ \times page size$
+
+implement page header, usable space, record layout, and how to detect corrupted pages.
+
+Milestone: The database can create, read, modify, and allocate pages independently of the higher-level data model.
