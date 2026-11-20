@@ -71,11 +71,4 @@ Tokenizer → Parser → AST → Validation
 ### a. Stage 1 — File storage and serialization
 
 record representation in memory and encoding it into byte sequence to be stored in disk.  
-Tasks:
-
-    - Open and create a database file.
-    - Read and write byte ranges.
-    -Design a record format.
-    -Convert records to bytes and back.
-    -Detect malformed or truncated records.
-    -Reopen the database and recover previously stored data.
+Tasks: - Open and create a database file. - Read and write byte ranges. - Design a record format. - Convert records to bytes and back. - Detect malformed or truncated records. - Reopen the database and recover previously stored data.
