@@ -16,25 +16,31 @@ impl Page {
             data: [0; PAGE_SIZE],
         }
     }
+    /// returns a reference to array of bytes
     pub fn as_slice(&self) -> &[u8] {
         &self.data
     }
+    /// returns a reference to array of mut bytes
     pub fn as_slice_mut(&mut self) -> &mut [u8] {
         &mut self.data
     }
 
     // READERS METHODS (liitle endian)
+    ///returns an u16
     pub fn read_u16(&self, offset: usize) -> u16 {
         u16::from_le_bytes(self.data[offset..offset + 2].try_into().unwrap())
     }
+    ///returns a u32
     pub fn read_u32(&self, offset: usize) -> u32 {
-        u32::from_le_bytes(self.data[offset..offset + 2].try_into().unwrap())
+        u32::from_le_bytes(self.data[offset..offset + 4].try_into().unwrap())
     }
 
     // WRITERS MTD
+    ///writes val(u16) into byte sequence
     pub fn write_u16(&mut self, offset: usize, val: u16) {
         self.data[offset..offset + 2].copy_from_slice(&val.to_le_bytes());
     }
+    ///writes val(u32) into byte sequence
     pub fn write_u32(&mut self, offset: usize, val: u32) {
         self.data[offset..offset + 4].copy_from_slice(&val.to_le_bytes());
     }
