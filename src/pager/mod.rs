@@ -1,4 +1,6 @@
 use crate::error::*;
+pub mod freelist;
+pub mod memory;
 pub const PAGE_SIZE: usize = 4096; //Size of each page 4KB
 pub type PageNo = u32;
 
@@ -42,7 +44,7 @@ pub trait Pager {
     //READ a page
     fn read_page(&self, page_no: PageNo) -> Result<&Page>;
     //mutable ref to write
-    fn write_page(&mut self, page_no: PageNo) -> Result<&mut Page>;
+    fn write_page(&mut self, page_no: PageNo, page: &Page) -> Result<()>;
     //allocate new page
     fn allocate_page(&mut self) -> Result<PageNo>;
     //free a page to the freelist
