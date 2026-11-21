@@ -61,6 +61,7 @@ impl Pager for MemoryPager {
 
         //free up the page
         self.pages[page_no as usize - 1] = Page::zeroed();
+        self.freelist.push(page_no);
         Ok(())
     }
     fn page_count(&self) -> u32 {
