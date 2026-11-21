@@ -20,17 +20,17 @@ Single database file (+ journal/WAL)
 
 db-engine is a relational,serverless,embedded database similar to sqlite.
 
-| PROPERTY        | Target               |
-| --------------- | -------------------- | --------------------------- |
-| language        | Rust                 |
-| Deployment      | Embedded             |
-| Storage         |                      | One database file           |
-| Data model      |                      | Tables, rows and columns    |
-| Primary index   |                      | B-tree                      |
-| Query interface |                      | A subset of SQL             |
-| Transactions    |                      | Atomic commits and rollback |
-| Concurrency     | Initially one writer |
-| External server |                      | None                        |
+| PROPERTY        | Target                      |
+| --------------- | --------------------------- |
+| language        | Rust                        |
+| Deployment      | Embedded                    |
+| Storage         | One database file           |
+| Data model      | Tables, rows and columns    |
+| Primary index   | B-tree                      |
+| Query interface | A subset of SQL             |
+| Transactions    | Atomic commits and rollback |
+| Concurrency     | Initially one writer        |
+| External server | None                        |
 
 ## 2 DATABASE ARCHITECTURE
 
