@@ -1,6 +1,8 @@
 use crate::error::*;
 pub mod freelist;
 pub mod memory;
+pub mod metapage;
+pub mod pageheader;
 pub const PAGE_SIZE: usize = 4096; //Size of each page 4KB
 pub type PageNo = u32;
 
@@ -47,14 +49,22 @@ impl Page {
 }
 
 pub trait Pager {
-    //READ a page
+    ///Read a page and return a Result<T,Err> where T is a reference to page and Err is catched errors.
+    /// Input:PageNo
     fn read_page(&self, page_no: PageNo) -> Result<&Page>;
-    //mutable ref to write
+    ///Write a page and return a Result<T,Err> where T is a reference to page and Err is catched errors
+    /// Input: PageNo,an updated page reference
     fn write_page(&mut self, page_no: PageNo, page: &Page) -> Result<()>;
-    //allocate new page
+    ///Allocates a page by reusing a freed page or creating a new page returning a Result<T,Err> where T is PageNo and Err is captured errors
     fn allocate_page(&mut self) -> Result<PageNo>;
-    //free a page to the freelist
+    ///Frees a page by removing data from that page return Result<(),Err> where Err is captured errors
     fn free_page(&mut self, page_no: PageNo) -> Result<()>;
-    //count total no of pages
+    ///returns total amount of pages
     fn page_count(&self) -> u32;
+
+    ///Reads metadata at pageNo == 0
+    fn read_meta(&self) -> Result<&Page>;
+
+    ///writes metadata at PageNo ==0
+    fn write_meta(&mut self, page: &Page) -> Result<()>;
 }
